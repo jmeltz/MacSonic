@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: rgba(30, 30, 30, 0.85);
+  --bg-secondary: rgba(40, 40, 40, 0.9);
+  --bg-tertiary: rgba(50, 50, 50, 0.8);
+  --bg-hover: rgba(255, 255, 255, 0.06);
+  --bg-active: rgba(255, 255, 255, 0.1);
+  --bg-selected: rgba(59, 130, 246, 0.3);
+
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-tertiary: rgba(255, 255, 255, 0.35);
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --lossless-color: #3b82f6;
+  --lossy-color: #f59e0b;
+
+  --waveform-played: #3b82f6;
+  --waveform-unplayed: rgba(255, 255, 255, 0.2);
+  --waveform-cursor: rgba(255, 255, 255, 0.9);
+
+  --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --titlebar-height: 38px;
+  --transport-height: 48px;
+  --statusbar-height: 24px;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-family);
+  font-size: 13px;
+  color: var(--text-primary);
+  background: transparent;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  background: var(--bg-primary);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Base button reset ── */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Transport (playback) buttons ── */
+.transport-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  transition: all 150ms ease;
+}
+
+.transport-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.transport-btn:active {
+  background: var(--bg-active);
+  transform: scale(0.93);
+}
+
+.transport-btn-primary {
+  width: 40px;
+  height: 40px;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+}
+
+.transport-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.transport-btn-primary:active {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(0.93);
+}
+
+/* ── Small icon buttons (shuffle, repeat, volume) ── */
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+  transition: all 150ms ease;
+}
+
+.icon-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.icon-btn:active {
+  background: var(--bg-active);
+  transform: scale(0.93);
+}
+
+.icon-btn-active {
+  color: var(--accent) !important;
+}
+
+.icon-btn-active:hover {
+  color: var(--accent-hover) !important;
+}
+
+/* ── Custom volume slider ── */
+.volume-slider-track {
+  position: relative;
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.volume-slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.volume-slider-input {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ── Column resize handle ── */
+.col-resize-handle {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 7px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 1;
+}
+
+.col-resize-handle::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  right: 3px;
+  width: 1px;
+  height: 50%;
+  background: transparent;
+  transition: background 150ms ease;
+}
+
+.col-resize-handle:hover::after {
+  background: var(--text-tertiary);
+}

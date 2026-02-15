@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:resonic.at)",
+      "Bash(pnpm --version:*)",
+      "Bash(cargo:*)",
+      "Bash(pnpm create:*)",
+      "Bash(npx create-tauri-app@latest:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm approve-builds:*)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm tauri build:*)",
+      "Bash(grep:*)",
+      "Bash(python3:*)",
+      "Bash(pnpm tsc:*)",
+      "Bash(node -e:*)"
+    ]
+  }
+}
