@@ -17,10 +17,6 @@ A modern, native audio player for macOS built with Tauri, React, and TypeScript.
 - **File Management**: Virtual scrolling for smooth performance with large libraries
 - **Transparent macOS Integration**: Native window styling with overlay title bar
 
-## Screenshots
-
-*Coming soon*
-
 ## Installation
 
 ### Prerequisites
